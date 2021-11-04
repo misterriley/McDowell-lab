@@ -2,7 +2,11 @@ package rw;
 
 public class Histogram
 {
-	public static Histogram convertToHistogram(ParticleSwarm p_swarm, double p_min, double p_max, int p_numBins)
+	public static Histogram convertToHistogram(
+		final ParticleSwarm p_swarm,
+		final double p_min,
+		final double p_max,
+		final int p_numBins)
 	{
 		final Histogram ret = new Histogram(p_min, p_max, p_numBins);
 
@@ -10,7 +14,7 @@ public class Histogram
 		int count = 0;
 		for (final Particle p : p_swarm.getParticles())
 		{
-			final double d = (Double)p.getValue();
+			final double d = (Double) p.getValue();
 			sum += d;
 			count++;
 			final int index = ret.findBin(d);
@@ -28,23 +32,13 @@ public class Histogram
 	private final double	m_binWidth;
 	private double			m_mean;
 
-	private Histogram(double p_min, double p_max, int p_numBins)
+	private Histogram(final double p_min, final double p_max, final int p_numBins)
 	{
 		m_counts = new int[p_numBins];
 
 		m_min = p_min;
 		m_max = p_max;
 		m_binWidth = (p_max - p_min) / p_numBins;
-	}
-
-	private int findBin(double p_value)
-	{
-		if (p_value == m_max)
-		{
-			return m_counts.length - 1;
-		}
-
-		return (int)((p_value - m_min) / m_binWidth);
 	}
 
 	public int[] getCounts()
@@ -57,7 +51,17 @@ public class Histogram
 		return m_mean;
 	}
 
-	private void setMean(double p_mean)
+	private int findBin(final double p_value)
+	{
+		if (p_value == m_max)
+		{
+			return m_counts.length - 1;
+		}
+
+		return (int) ((p_value - m_min) / m_binWidth);
+	}
+
+	private void setMean(final double p_mean)
 	{
 		m_mean = p_mean;
 	}

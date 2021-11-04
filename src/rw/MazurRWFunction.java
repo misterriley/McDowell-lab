@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class MazurRWFunction implements ParticleFunction
 {
-	private final Random	m_random;
+	private final Random m_random;
 
 	private final double	m_b;
 	private final double	m_alpha;
@@ -12,7 +12,12 @@ public class MazurRWFunction implements ParticleFunction
 	private final double	m_deltaT;
 	private final DecayType	m_decayType;
 
-	public MazurRWFunction(double p_b, double p_alpha, double p_r, double p_deltaT, DecayType p_decayType)
+	public MazurRWFunction(
+		final double p_b,
+		final double p_alpha,
+		final double p_r,
+		final double p_deltaT,
+		final DecayType p_decayType)
 	{
 		m_random = new Random();
 
@@ -23,16 +28,11 @@ public class MazurRWFunction implements ParticleFunction
 		m_decayType = p_decayType;
 	}
 
-	private boolean coinflip(double p_r)
-	{
-		return m_random.nextDouble() <= p_r;
-	}
-
 	@Override
-	public Object getOutput(Particle p_p)
+	public Object getOutput(final Particle p_p)
 	{
-		final Particle1D p1D = (Particle1D)p_p;
-		double value = (Double)p1D.getValue();
+		final Particle1D p1D = (Particle1D) p_p;
+		double value = (Double) p1D.getValue();
 
 		if (coinflip(m_r * m_deltaT))
 		{
@@ -58,5 +58,10 @@ public class MazurRWFunction implements ParticleFunction
 		}
 
 		return value;
+	}
+
+	private boolean coinflip(final double p_r)
+	{
+		return m_random.nextDouble() <= p_r;
 	}
 }

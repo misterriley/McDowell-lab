@@ -12,12 +12,12 @@ public class ParticleSwarm
 		m_particles = new ArrayList<>();
 	}
 
-	public void add(Particle p_particle)
+	public void add(final Particle p_particle)
 	{
 		m_particles.add(p_particle);
 	}
 
-	public void applyToAll(ParticleFunction p_function)
+	public void applyToAll(final ParticleFunction p_function)
 	{
 		for (final Particle p : m_particles)
 		{

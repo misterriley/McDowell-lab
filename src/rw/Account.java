@@ -18,7 +18,7 @@ public class Account
 		return annualIntrestRate / 12 / 100;
 	}
 
-	public static void main(String[] args)
+	public static void main(final String[] args)
 	{ // create main
 
 		final Account[] accounts = new Account[11];
@@ -33,7 +33,7 @@ public class Account
 		{ // loop and input validation
 
 			System.out.print("== What is your account number? ");
-			int     enteredID  = input.nextInt();
+			int enteredID = input.nextInt();
 			boolean shouldExit = false;
 
 			if (enteredID > 10 || enteredID < 1)
@@ -65,33 +65,41 @@ public class Account
 				// if else statements for input validation
 				if (choice == 1)
 				{
-					System.out.println(
-						"== Your current balance is $" + String.format("%.2f", accounts[enteredID].getBalance()));
+					System.out
+						.println(
+							"== Your current balance is $" + String.format("%.2f", accounts[enteredID].getBalance()));
 					continue;
 				}
-				else if (choice == 2)
-				{
-					System.out.println("== Enter amount to withdraw: ");
-					final int withdrawAmount = input.nextInt();
-					accounts[enteredID].withDraw(withdrawAmount);
-					System.out.println(
-						"== Success! Your new balance is $" + String.format("%.2f", accounts[enteredID].getBalance()));
-					continue;
-				}
-				else if (choice == 3)
-				{
-					System.out.println("Enter amount to deposit: ");
-					final int depositAmount = input.nextInt();
-					accounts[enteredID].deposit(depositAmount);
-					System.out.println(
-						"== Success! Your new balance is $" + String.format("%.2f", accounts[enteredID].getBalance()));
-					continue;
-				}
-				else if (choice > 4 || choice < 1)
-				{
-					System.out.println("Invalid option. Please try again. ");
-					continue;
-				}
+				else
+					if (choice == 2)
+					{
+						System.out.println("== Enter amount to withdraw: ");
+						final int withdrawAmount = input.nextInt();
+						accounts[enteredID].withDraw(withdrawAmount);
+						System.out
+							.println(
+								"== Success! Your new balance is $"
+									+ String.format("%.2f", accounts[enteredID].getBalance()));
+						continue;
+					}
+					else
+						if (choice == 3)
+						{
+							System.out.println("Enter amount to deposit: ");
+							final int depositAmount = input.nextInt();
+							accounts[enteredID].deposit(depositAmount);
+							System.out
+								.println(
+									"== Success! Your new balance is $"
+										+ String.format("%.2f", accounts[enteredID].getBalance()));
+							continue;
+						}
+						else
+							if (choice > 4 || choice < 1)
+							{
+								System.out.println("Invalid option. Please try again. ");
+								continue;
+							}
 
 				// menu exit and loop
 				shouldExit = false;
@@ -100,7 +108,7 @@ public class Account
 					System.out.println("== Sign off.");
 					System.out.println("== Thank you for using our ATM. Come back soon!");
 					System.out.println("");
-					enteredID  = input.nextInt();
+					enteredID = input.nextInt();
 
 					shouldExit = false;
 
@@ -110,9 +118,9 @@ public class Account
 		}
 	}
 
-	private int            id;
+	private int id;
 
-	private double         balance;
+	private double balance;
 
 	private java.util.Date dateCreated;
 
@@ -121,15 +129,15 @@ public class Account
 
 	}
 
-	public Account(int id)
+	public Account(final int id)
 	{
-		this.id     = id;
-		balance     = 100;
+		this.id = id;
+		balance = 100;
 		dateCreated = new java.util.Date();
 
 	}
 
-	public double deposit(double depositeAmount)
+	public double deposit(final double depositeAmount)
 	{
 		return balance = balance + depositeAmount;
 	}
@@ -154,23 +162,23 @@ public class Account
 		return balance * getMonthlyIntrestRate();
 	}
 
-	public void setAnnualIntrest(double intrest)
+	public void setAnnualIntrest(final double intrest)
 	{
 		annualIntrestRate = intrest;
 
 	}
 
-	public void setBalance(double newBalance)
+	public void setBalance(final double newBalance)
 	{
 		balance = newBalance;
 	}
 
-	public void setID(int newID)
+	public void setID(final int newID)
 	{
 		id = newID;
 	}
 
-	public double withDraw(double withDrawAmount)
+	public double withDraw(final double withDrawAmount)
 	{
 		return balance = balance - withDrawAmount;
 	}
